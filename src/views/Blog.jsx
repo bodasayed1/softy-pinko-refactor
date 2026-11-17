@@ -1,65 +1,51 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import SectionTitle from '../components/ui/SectionTitle'
+import Button from '../components/ui/Button'
 import entry01 from '../assets/images/blog-item-01.png'
 import entry02 from '../assets/images/blog-item-02.png'
 import entry03 from '../assets/images/blog-item-03.png'
 
-const Blog = () => {
-  return (
-    <>
-        <section className='blog mt-5 mb-5' id='blog'>
-            <Container>
-                <Row>
-                    <Col className='title'>
-                        <h3>Blog Entries</h3>
-                        <p className='mt-4'>Integer molestie aliquam gravida. Nullam nec arcu finibus, imperdiet nulla vitae, placerat nibh. Cras maximus venenatis molestie.</p>
-                    </Col>
-                </Row>
-                <Row className='mt-5'>
-                    <Col className='col-12 col-sm-12 col-md-6 col-lg-4 entry'>
-                        <img src={entry01} />
-                        
-                        <div className="txt">
-                            <h5><a href="">Vivamus ac vehicula dui</a></h5>
-                            <p>Cras aliquet ligula dui, vitae fermentum velit tincidunt id. 
-                                Praesent eu finibus nunc. Nulla in sagittis eros. Aliquam egestas augue.
-                            </p>
-                        </div>
+const posts = [
+  {
+    image: entry01,
+    title: 'Vivamus ac vehicula dui',
+    text: 'Cras aliquet ligula dui, vitae fermentum velit tincidunt id. Praesent eu finibus nunc. Nulla in sagittis eros. Aliquam egestas augue.',
+  },
+  {
+    image: entry02,
+    title: 'Phasellus convallis augue',
+    text: 'Aliquam commodo ornare nisl, et scelerisque nisl dignissim ac. Vestibulum finibus urna ut velit venenatis, vel ultrices sapien mattis.',
+  },
+  {
+    image: entry03,
+    title: 'Nam gravida purus non',
+    text: 'Maecenas eu erat vitae dui convallis consequat vel gravida nulla. Vestibulum finibus euismod odio, ut tempus enim varius eu.',
+  },
+]
 
-                        <Button>READ MORE</Button>
-                    </Col>
-                    <Col className='col-12 col-sm-12 col-md-6 col-lg-4 entry'>
-                        <img src={entry02} />
-                        
-                        <div className="txt">
-                            <h5><a href="">Phasellus convallis augue</a></h5>
-                            <p>Aliquam commodo ornare nisl, et scelerisque nisl dignissim ac. 
-                                Vestibulum finibus urna ut velit venenatis, vel ultrices sapien mattis.
-                            </p>
-                        </div>
+const Blog = () => (
+  <section id="blog" className="my-48 text-center">
+    <div className="container">
+      <SectionTitle
+        title="Blog Entries"
+        text="Integer molestie aliquam gravida. Nullam nec arcu finibus, imperdiet nulla vitae, placerat nibh. Cras maximus venenatis molestie."
+      />
 
-                        <Button>READ MORE</Button>
-                    </Col>
-                    <Col className='col-12 col-sm-12 col-md-6 col-lg-4 entry'>
-                        <img src={entry03} />
-                        
-                        <div className="txt">
-                            <h5><a href="">Nam gravida purus non</a></h5>
-                            <p>Maecenas eu erat vitae dui convallis consequat vel gravida nulla. 
-                                Vestibulum finibus euismod odio, ut tempus enim varius eu.
-                            </p>
-                        </div>
-
-                        <Button>READ MORE</Button>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-    </>
-  )
-}
+      <div className="mt-48 grid gap-x-30 gap-y-30 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map(({ image, title, text }) => (
+          <article key={title} className="group cursor-pointer">
+            <img src={image} alt={title} className="mx-auto" />
+            <h5 className="py-15">
+              <a href="#blog" className="text-ink transition-all group-hover:text-accent">
+                {title}
+              </a>
+            </h5>
+            <p className="text-muted transition-all group-hover:text-ink">{text}</p>
+            <Button>READ MORE</Button>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)
 
 export default Blog

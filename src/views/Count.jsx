@@ -1,53 +1,37 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import rate from '../assets/images/circle-dec.png'
+import CountUp from '../components/ui/CountUp'
+import circle from '../assets/images/circle-dec.png'
+import background from '../assets/images/fun-facts-bg.png'
 
-const Count = () => {
-  return (
-    <>
-        <section className='count' id='count'>
-            <Container>
-                <Row>
-                    <Col className='col-12 col-sm-6 col-md-3 rate'>
-                        <div className="rate_num">
-                            <p>126</p>
-                            <span>Projects</span>
-                        </div>
-                        <div className="img_rate">
-                            <img src={rate} />
-                        </div>
-                    </Col>
-                    <Col className='col-12 col-sm-6 col-md-3 rate'>
-                        <div className="rate_num">
-                            <p>63</p>
-                            <span>Happy Clients</span>
-                        </div>
-                        <div className="img_rate">
-                            <img src={rate} />
-                        </div>
-                    </Col>
-                    <Col className='col-12 col-sm-6 col-md-3 rate'>
-                        <div className="rate_num">
-                            <p>126</p>
-                            <span>Awards Wins</span>
-                        </div>
-                        <div className="img_rate">
-                            <img src={rate} />
-                        </div>
-                    </Col>
-                    <Col className='col-12 col-sm-6 col-md-3 rate'>
-                        <div className="rate_num">
-                            <p>27</p>
-                            <span>Countries</span>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-    </>
-  )
-}
+const facts = [
+  { end: 126, label: 'Projects' },
+  { end: 63, label: 'Happy Clients' },
+  { end: 126, label: 'Awards Wins' },
+  { end: 27, label: 'Countries' },
+]
+
+const Count = () => (
+  <section
+    id="count"
+    style={{ backgroundImage: `url(${background})` }}
+    className="bg-cover bg-center bg-no-repeat px-15 py-100 text-center md:px-50"
+  >
+    <div className="container grid gap-y-30 sm:grid-cols-2 md:grid-cols-4">
+      {facts.map(({ end, label }, index) => (
+        <div key={label} className="group flex items-center justify-center">
+          <div className="cursor-pointer text-white transition-all group-hover:-translate-y-15">
+            <p className="text-[2.2rem] font-medium tabular-nums">
+              <CountUp end={end} />
+            </p>
+            <span>{label}</span>
+          </div>
+
+          {index < facts.length - 1 && (
+            <img src={circle} alt="" className="ml-50 hidden lg:block xl:ml-100" />
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+)
 
 export default Count
